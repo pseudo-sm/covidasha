@@ -1,0 +1,77 @@
+<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel">Create Alert</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Hi, Your name ?</label>
+            <input class="form-control" id="name" placeholder="Your Name" required>
+          </div>
+            <div class="form-group">
+            <label for="type">I Want/Have</label>
+            <select class="custom-select" id="type" required>
+                <option selected>Choose...</option>
+                <option value="1">Want</option>
+                <option value="2">Have</option>
+            </select>
+          </div>
+        <div class="form-group">
+        <label for="content">What ?</label>
+        <input type="text" class="form-control" id="content" placeholder="Plasma / Oxygen / Funds" required>
+        <small>Mention all possible details Blood group,amount etc  </small>
+      </div>
+            <div class="form-group">
+        <label for="location">Where ?</label>
+        <input type="text" class="form-control" id="location" placeholder="Need / Supply location" required>
+        <small>Where is donor or seeker from? (Area and City)</small>
+      </div>
+          <div class="form-group">
+            <label for="phone">How to reach you?</label>
+            <input type="text" class="form-control" id="phone" placeholder="Phone" required>
+          <input type="text" class="form-control mt-2" id="email" placeholder="Email" required>
+            <small id="emailHelp" class="form-text text-muted">Your information is safe with us. Your contact will not be shared with anyone. Contact information people who take interest in your alert will be shared with you over sms and email.</small>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <button type="submit" id="create-alert" class="btn btn-warning">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#create-alert").click(function(){
+
+      name = $("#name").val();
+      type = $("#type").val();
+      content = $("#content").val();
+      location_ = $("#location").val();
+      phone = $("#phone").val();
+      email = $("#email").val();
+
+        $.ajax({
+              url: "/create-alert",
+              type: "POST",
+              data: {
+                  "name": name,
+                  "email": email,
+                  "type": type,
+                  "content": content,
+                  "location": location_,
+                  "phone": phone,
+              },
+              dataType: "json",
+              success: function (res) {
+                  alert('Thanks a lot. Your alert will soon be online !! ');
+                  $("#modalForm").modal('hide');
+              }
+          });
+  })
+</script>

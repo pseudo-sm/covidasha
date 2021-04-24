@@ -1,0 +1,485 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<style>
+
+
+p,a,h1,h2,h3,h4 {
+	margin: 0;
+	padding: 0;
+}
+
+.section-team {
+	font-family: "Poppins", sans-serif;
+	padding: 80px 0;
+}
+
+.section-team .header-section {
+	margin-bottom: 50px;
+}
+
+.section-team .header-section .small-title {
+    margin-bottom: 25px;
+	font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.section-team .header-section .title {
+    font-weight: 700;
+    color:#fff;
+    font-size: 45px;
+}
+
+.section-team .single-person {
+	margin-top: 30px;
+	padding: 30px;
+	background-color: #f6f9ff;
+	border-radius: 5px;
+}
+
+.section-team .single-person:hover {
+	background: linear-gradient(to right, #016cec, #00b5f7);
+}
+
+.section-team .single-person .person-image {
+    position: relative;
+    margin-bottom: 50px;
+    border-radius: 50%;
+    border: 4px dashed transparent;
+    transition: padding .3s;
+}
+
+.section-team .single-person:hover .person-image {
+	padding: 12px;
+    border: 4px dashed #fff;
+}
+
+.section-team .single-person .person-image img {
+	width: 100%;
+    border-radius: 50%;
+}
+
+.section-team .single-person .person-image .icon {
+	position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,50%);
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: linear-gradient(to right, #016cec, #00b5f7);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.section-team .single-person:hover .person-image .icon {
+	background: none;
+	background-color: #fff;
+	color: #016cec;
+}
+
+.section-team .single-person .person-info .full-name {
+	margin-bottom: 10px;
+	font-size: 28px;
+    font-weight: 700;
+}
+
+.section-team .single-person .person-info .speciality {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #016cec;
+}
+
+.section-team .single-person:hover .full-name,
+.section-team .single-person:hover .speciality {
+	color: #fff;
+}
+    /* > Process Styles */
+.process-wrap {
+  width: 50%;
+  margin: 100px auto;
+}
+.process-main {
+    width: 100%;
+    min-width: 320px;
+    display: flex;
+}
+.col-3 {
+  width: 25%;
+  position: relative;
+}
+.col-3:first-child .process-step:before {
+    content: '1';
+}
+.col-3:nth-child(2) .process-step:before{
+    content: '2';
+}
+.col-3:nth-child(3) .process-step:before {
+    content: '3';
+}
+.col-3:last-child .process-step:before{
+    content: '4';
+}
+.process-main .col-3:not(:first-child):before{
+    content: ;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    top: 17.5px;
+    left: calc(-50% + 20px);
+    right: 0;
+    background: #ebebeb;
+    border: 2px #ebebeb solid;
+   -o-transition: .4s;
+    -ms-transition: .4s;
+    -moz-transition: .4s;
+    -webkit-transition: .4s;
+     transition: .4s;
+}
+.process-step-cont {
+    font-family: sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: space-between;
+}
+.process-step {
+    border: 5px #ebebeb solid;
+    border-radius: 100%;
+    line-height: 0;
+    background: #959595;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    display: flex;
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    z-index: 4;
+    cursor: pointer;
+}
+.process-label {
+    color: #959595;
+    font-weight: 600;
+     width: 100%;
+     text-align: center;
+}
+.process-dots {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ebebeb;
+    cursor: pointer;
+}
+.process-dot-cont {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    width: 60%;
+    padding-top: 5px;
+}
+.active-step1 .col-3:first-child .process-step,
+.active-step1 .col-3:first-child .process-dots:first-child,
+.active-step1-mini2 .col-3:first-child .process-step,
+.active-step1-mini2 .col-3:first-child .process-dots:nth-child(-n+2),
+.active-step1-mini3 .col-3:first-child .process-step,
+.active-step1-mini3 .col-3:first-child .process-dots:nth-child(-n+3),
+.active-step1-mini4 .col-3:first-child .process-step,
+.active-step1-mini4 .col-3:first-child .process-dots:nth-child(-n+4)
+{
+    background-color: #f89828;
+}
+.active-step1-mini2 .col-3:first-child .process-dots:first-child,
+.active-step1-mini3 .col-3:first-child .process-dots:nth-child(-n+2),
+.active-step1-mini4 .col-3:first-child .process-dots:nth-child(-n+3)
+ {
+    background-color: #fbcb93;
+}
+.active-step1 .col-3:first-child .process-label,
+.active-step1-mini3 .col-3:first-child .process-label,
+.active-step1-mini2 .col-3:first-child .process-label,
+.active-step1-mini4 .col-3:first-child .process-label{
+    color: #f89828;
+}
+.active-step2 .col-3:first-child,
+.active-step3 .col-3:nth-child(-n+2),
+.active-step4 .col-3:nth-child(-n+3){
+    opacity: 0.5;
+   /*pointer-events: none;*/
+}
+.active-step2 .col-3:first-child .process-step:before,
+.active-step3 .col-3:nth-child(-n+2) .process-step:before,
+.active-step4 .col-3:nth-child(-n+3) .process-step:before{
+    content: '\2713';
+    padding: 7px;
+}
+.active-step2 .col-3:nth-child(-n+2) .process-step,
+.active-step2 .col-3:nth-child(-n+2) .process-dots,
+.active-step3 .col-3:nth-child(-n+3) .process-step,
+.active-step3 .col-3:nth-child(-n+3) .process-dots,
+.active-step4 .col-3:nth-child(-n+4) .process-step,
+.active-step4 .col-3:nth-child(-n+4) .process-dots {
+    background-color: #f89828;
+}
+.active-step2 .col-3:nth-child(-n+2) .process-label,
+.active-step3 .col-3:nth-child(-n+3) .process-label,
+.active-step4 .col-3:nth-child(-n+4) .process-label{
+    color: #f89828;
+}
+.active-step2 .col-3:nth-child(-n+2):before,
+.active-step3 .col-3:nth-child(-n+3):before,
+.active-step4 .col-3:nth-child(-n+4):before{
+    background: #f89828 !important;
+}
+@media screen and (max-width: 640px) {
+  .process-main {
+    flex-wrap: wrap;
+  }
+  .col-3 {
+    width: 50%;
+  }
+  .process-main .col-3:nth-of-type(3):not(:first-child):before {
+    top: -19.5px;
+    left: calc(-50% + 145px);
+    transform: rotate(150deg);
+  }
+}
+</style>
+</head>
+<body style="
+    background:
+  linear-gradient(
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.6)
+  ),
+  url({% static 'bg.jpg' %});
+  background-position: center;
+  ">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">How this works?</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" target="_blank" href="https://www.pdochealth.com">Consult a Doctor Online</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+<div class="process-wrap active-step1">
+  <div class="process-main">
+    <div class="col-3 ">
+      <div class="process-step-cont">
+        <div class="process-step step-1"></div>
+        <span class="process-label" href="#carousel-id" role="button" data-slide-to="0">Step 1</span>
+      </div>
+    </div>
+    <div class="col-3 ">
+      <div class="process-step-cont">
+        <div class="process-step step-2"></div>
+        <span class="process-label" href="#carousel-id" role="button" data-slide-to="1">Step 2</span>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="process-step-cont">
+        <div class="process-step step-3"></div>
+        <span class="process-label" href="#carousel-id" role="button" data-slide-to="2">Step 3</span>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="process-step-cont">
+        <div class="process-step step-4"></div>
+        <span class="process-label" href="#carousel-id" role="button" data-slide-to="3">Step 4</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+
+  <!-- Each carousel needs a unique ID -->
+  <div id="carousel-id" data-interval="false" class="carousel slide" data-ride="carousel">
+
+    <div class="carousel-inner border border-warning p-5" role="listbox">
+      <div class="carousel-item active">
+        <h3 class="text-white text-center">Create an Alert</h3>
+      </div>
+      <div class="carousel-item">
+        <h3 class="text-white text-center">Wait for people to respond to your eqnuiry.</h3>
+      </div>
+      <div class="carousel-item">
+        <h3 class="text-white text-center">When someone takes interest in your eqnuire you get their email and phone delivered to your contact information.</h3>
+      </div>
+        <div class="carousel-item">
+        <h3 class="text-white text-center">Call or Email them directly. If that is not sufficient feel free to call the support number sent to you via email.</h3>
+      </div>
+    </div>
+    <!-- /.text-center -->
+  </div>
+<!-- /.carousel -->
+
+</div>
+
+<section class="section-team">
+		<div class="container">
+			<!-- Start Header Section -->
+			<div class="row justify-content-center text-center">
+				<div class="col-md-8 col-lg-6">
+					<div class="header-section">
+						<h3 class="small-title">Our Sponsors</h3>
+						<h2 class="title">This is a peer funded platform</h2>
+					</div>
+				</div>
+			</div>
+			<!-- / End Header Section -->
+			<div class="row">
+				<!-- Start Single Person -->
+				<div class="col-sm-6 col-lg-4 col-xl-3">
+					<div class="single-person">
+						<div class="person-image">
+							<img src="https://i.ibb.co/G2CBWvb/person1.jpg" alt=>
+
+						</div>
+						<div class="person-info">
+							<h3 class="full-name">John Doe</h3>
+							<span class="speciality">Cognizant</span>
+						</div>
+					</div>
+				</div>
+				<!-- / End Single Person -->
+				<!-- Start Single Person -->
+				<div class="col-sm-6 col-lg-4 col-xl-3">
+					<div class="single-person">
+						<div class="person-image">
+							<img src="https://i.ibb.co/nbpNr4r/person2.jpg" alt=>
+
+						</div>
+						<div class="person-info">
+							<h3 class="full-name">Robert Smith</h3>
+							<span class="speciality">Wipro</span>
+						</div>
+					</div>
+				</div>
+				<!-- / End Single Person -->
+				<!-- Start Single Person -->
+				<div class="col-sm-6 col-lg-4 col-xl-3">
+					<div class="single-person">
+						<div class="person-image">
+							<img src="https://i.ibb.co/25zdRMr/person3.jpg" alt=>
+							
+						</div>
+						<div class="person-info">
+							<h3 class="full-name">John Doe</h3>
+							<span class="speciality">Accenture</span>
+						</div>
+					</div>
+				</div>
+				<!-- / End Single Person -->
+				<!-- Start Single Person -->
+				<div class="col-sm-6 col-lg-4 col-xl-3">
+					<div class="single-person">
+						<div class="person-image">
+							<img src="https://i.ibb.co/w0ynr2Q/person4.jpg" alt=>
+
+						</div>
+						<div class="person-info">
+							<h3 class="full-name">John Smith</h3>
+							<span class="speciality">Deloitte</span>
+						</div>
+					</div>
+				</div>
+				<!-- / End Single Person -->
+			</div>
+		</div>
+	</section>
+<!-- /.container -->
+</body>
+<script>
+
+    $('.process-step-cont').on('click', function() {
+        console.log($(this));
+        index = $(this).find(".process-label").attr('data-slide-to')
+        $('#carousel-id').carousel(parseInt(index));
+    });
+    /**This is just a demo to add the process classes**/
+$(document).ready(function($) {
+	$(".process-step").click(function() {
+    var theClass = $(this).attr("class").match(/(^|\s)step-\S+/g);
+    var bute = $.trim(theClass);
+    switch (bute) {
+         case "step-1":
+       $(".process-wrap").addClass("active-step1")
+        break;
+      case 'step-2':
+         $(".process-wrap").attr('class', 'process-wrap');
+        $(this).parents(".process-wrap").addClass("active-step2")
+        break;
+      case 'step-3':
+         $(".process-wrap").attr('class', 'process-wrap');
+        $(this).parents(".process-wrap").addClass("active-step3")
+        break;
+      case 'step-4':
+         $(".process-wrap").attr('class', 'process-wrap');
+        $(this).parents(".process-wrap").addClass("active-step4 ")
+        break;
+      default:
+        $(".process-wrap").attr('class', 'process-wrap');
+    }
+  })
+
+  $(".process-dots").click(function() {
+    if ($(this).hasClass("ship-process-dot-1"))  {
+       $(".process-wrap").attr('class', 'process-wrap active-step1')
+        $(this).parents().find(".process-wrap").addClass("active-step1")
+
+      }
+    if ($(this).hasClass("ship-process-dot-2"))  {
+      $(".process-wrap").attr('class', 'process-wrap active-step1')
+        $(this).parents().find(".process-wrap").addClass("active-step1-mini2")
+
+      }
+    if ($(this).hasClass("ship-process-dot-3"))  {
+      $(".process-wrap").attr('class', 'process-wrap active-step1')
+        $(this).parents().find(".process-wrap").addClass("active-step1-mini3")
+
+      }
+    if ($(this).hasClass("ship-process-dot-4"))  {
+      $(".process-wrap").attr('class', 'process-wrap active-step1')
+        $(this).parents().find(".process-wrap").addClass("active-step1-mini4")
+      }
+   });
+
+});
+
+</script>
+</html>
