@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 # Create your views here.
+import requests
 from .models import Alert,Enquiry
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
@@ -50,6 +51,7 @@ def enquire(request):
     enquire.save()
     body = "{} has taken interest in your alert (Attached at the end of the email). He has shared his phone number and email id with us : \nPhone : {} \n Email : {}. Try contacting, if they are not available give a call to us @8249619206.\n {} \n Location : {} \n Thank You. ".format(name,phone,email,alert.what,alert.location)
     # send_email("New enquiry for your covid alert",body,alert.email)
+    send_message(body,alert.phone)
     return JsonResponse(True,safe=False)
 
 def send_email(subject,body,to):
@@ -61,6 +63,14 @@ def send_email(subject,body,to):
         )
     email_msg.send(fail_silently=False)
 
+import plivo
+def send_message(body,to):
+    client = plivo.RestClient("MAMWZLODVJNWRKZDG4NJ", "MTNlYmM4MDlhNDgwNjBkODk2MjNkZTMyZTVkODA1")
+    response = client.messages.create(
+        src='+918249619206',
+        dst="+91"+to,
+        text=body)
+    print(response)
 
 def how_it_works(request):
 
