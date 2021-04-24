@@ -107,7 +107,7 @@
   </div>
 </nav>
 
-<div class="main">
+<div class="main w-100">
 
 <div class="container mt-3">
     <div class="card bg-warning text-white shadow">
@@ -128,41 +128,33 @@
   </div>
 </div>
 
-<div class="container p-3 mt-3 entries">
+<div class="container p-1 mt-3 entries">
   {% for alert in alerts %}
   <div class="card {% if alert.want %} bg-danger {% else %} bg-success {% endif %} text-white p-3 entry">
     <div class="row justify-content-end">
-    <div class="col-6">
-    <h5 class="card-title what">       {% if alert.want %} "Looking for " {% else %} "Has" {% endif %} {{alert.what}} </h5>
-    <p class="card-subtitle mb-2 text-white name"> Name : {{alert.name}}</p>
-    <h7 class="card-text location"> Location : {{alert.location}}</h7>
+    <div class="col-8">
+      <h5 class="card-title what">       {% if alert.want %} "Looking for " {% else %} "Has" {% endif %} {{alert.what}} </h5>
+      <p class="card-subtitle mb-2 text-white name"> <b>Name</b> : {{alert.name}}</p>
+      <h7 class="card-text location"> <b>Location</b> : {{alert.location}}</h7>
+      <br><small>{{alert.get_duration}} ago</small>
     </div>
-    <div class="col-6 clickable" onclick="$('#respond-alert').attr('alert-id','{{alert.id}}');$('#enquiryForm').modal('show');">
+    <div class="col-4 clickable mt-3" onclick="$('#respond-alert').attr('alert-id','{{alert.id}}');$('#enquiryForm').modal('show');">
       {% if alert.want %}
       <div class="float-right">
-        <div class="row">
           <span>
             <i class="give-icon"></i>
           </span>
-        </div>
-        <div class="row">
           <p>Offer</p>
         </div>
-      </div>
       {% else %}
         <div class="float-right">
-          <div class="row">
             <span>
               <i class="ask-icon"></i>
             </span>
-          </div>
-          <div class="row">
             <p>Ask</p>
-          </div>
         </div>
       {% endif %}
-      <p class="card-text">Posted on : <span class="datetime">{{alert.datetime}}</span></p>
-
+    </div>
     </div>
     </div>
   </div>
@@ -196,12 +188,12 @@
 <script>
   var search = "";
   $("#search-item").keyup(function(){
-    search = $(this).val();
+    search = $(this).val().toLowerCase();
     $(".entry").each(function(){
     console.log(search)
-      location_ = $(this).find('.location').html();
-      what = $(this).find('.what').html();
-      name = $(this).find('.name').html();
+      location_ = $(this).find('.location').html().toLowerCase();
+      what = $(this).find('.what').html().toLowerCase();
+      name = $(this).find('.name').html().toLowerCase();
       if(!(name.indexOf(search) != -1 || what.indexOf(search)!= -1 || location_.indexOf(search)!= -1 ))
       {
         $(this).hide()
