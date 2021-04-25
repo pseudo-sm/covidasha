@@ -14,6 +14,10 @@ class Alert(models.Model):
     phone = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     datetime = models.DateTimeField(auto_now=True)
+    plasma = models.BooleanField(default=False)
+    oxygen = models.BooleanField(default=False)
+    money = models.BooleanField(default=False)
+    others = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name + " - " + self.what

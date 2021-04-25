@@ -134,9 +134,31 @@ select.errorHighlight, input.errorHighlight{
   </div>
 </div>
 
+  <div class="container mt-3">
+    <div class="card bg-secondary text-white shadow">
+    <div class="card-body text-white text-center">
+        <div class="control-group">
+      <div class="controls span2">
+        <label class="checkbox">
+            <input type="checkbox" class="filters" value="plasma"> Plasma
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" class="filters" value="oxygen"> Oxygen
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" class="filters" value="funds"> Funds
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" class="filters" value="others"> Others
+        </label>
+    </div>
+    </div>
+  </div>
+</div>
+
 <div class="container p-1 mt-3 entries">
   {% for alert in alerts %}
-  <div class="card {% if alert.want %} bg-danger {% else %} bg-success {% endif %} text-white p-3 entry">
+  <div class="card {% if alert.want %} bg-danger {% else %} bg-success {% endif %} text-white p-3 entry" data-type="{% if alert.plasma %} plasma {% endif %} {% if alert.oxygen %} oxygen {% endif %} {% if alert.money %} funds {% endif %} {% if alert.others %} others {% endif %}">
     <div class="row justify-content-end">
     <div class="col-8">
       <h5 class="card-title what">       {% if alert.want %} "Looking for " {% else %} "Has" {% endif %} {{alert.what}} </h5>
@@ -166,27 +188,7 @@ select.errorHighlight, input.errorHighlight{
   <br>
   {% endfor %}
 </div>
-  {% if alerts.has_other_pages %}
-  <ul class="pagination d-flex justify-content-center">
-    {% if alerts.has_previous %}
-      <li class="page-item"><a class="page-link" href="?page={{ users.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-    {% endif %}
-    {% for i in alerts.paginator.page_range %}
-      {% if alerts.number == i %}
-        <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if alerts.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ users.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
-    {% endif %}
-  </ul>
-{% endif %}
+
 <!--  Modal Form-->
 {% include 'modalForm.html' %}
 {% include 'enquiryForm.html' %}
@@ -219,7 +221,32 @@ select.errorHighlight, input.errorHighlight{
 
   gtag('config', 'G-2DNRPC25WZ');
 </script>
-
+<script>
+  $(".filters").change(function() {
+    var list = $(".filters").map(function(){if($(this).is(':checked')){return $(this).val()};}).get();
+    $(".entry").each(function() {
+    console.log(list);
+    if(list.length>0){
+      for(var i =0;i<list.length;i++)
+      {
+        var checked = $(this).attr('data-type').toLowerCase();
+        var item = list[i].toLowerCase();
+        if((checked.indexOf(item)!=-1))
+        {
+          $(this).show();
+        }
+        else {
+          $(this).hide();
+        }
+      }
+      }
+      else {
+      console.log("test");
+      $(".entry").show();
+      }
+    });
+  })
+</script>
 {% include 'footer.html' %}
 </body>
 </html>
