@@ -11,30 +11,38 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="name">Hi, Your name ?</label>
-            <input class="form-control" id="name" placeholder="Your Name" required>
+            <input class="form-control autocheck" id="name" placeholder="Your Name" required>
+            <p class="errortext">Enter valid name.</p>
           </div>
-            <div class="form-group">
+          <div class="form-group">
             <label for="type">I Want/Have</label>
-            <select class="custom-select" id="type" required>
-                <option selected>Choose...</option>
+            <select class="custom-select autocheck" id="type" required>
+                <option selected disabled value="0">Choose...</option>
                 <option value="1">Want</option>
                 <option value="2">Have</option>
             </select>
+            <p class="errortext">Choose request type.</p>
           </div>
-        <div class="form-group">
-        <label for="content">What ?</label>
-        <input type="text" class="form-control" id="content" placeholder="Plasma / Oxygen / Funds" required>
-        <small>Mention all possible details Blood group,amount etc  </small>
-      </div>
-            <div class="form-group">
-        <label for="location">Where ?</label>
-        <input type="text" class="form-control" id="location" placeholder="Need / Supply location" required>
-        <small>Where is donor or seeker from? (Area and City)</small>
-      </div>
+          <div class="form-group">
+            <label for="content">What ?</label>
+            <input type="text" class="form-control autocheck" id="content" placeholder="Plasma / Oxygen / Funds" required>
+            <small>Mention all possible details like Blood group,amount etc  </small>
+            <p class="errortext">Enter valid details.</p>
+          </div>
+          <div class="form-group">
+            <label for="location">Where ?</label>
+            <input type="text" class="form-control autocheck" id="location" placeholder="Need / Supply location" required>
+            <small>Where is donor or seeker from? (Area and City)</small>
+            <p class="errortext">Enter valid location.</p>
+          </div>
           <div class="form-group">
             <label for="phone">How to reach you?</label>
-            <input type="text" class="form-control" id="phone" placeholder="9999999999" required>
-          <input type="text" class="form-control mt-2" id="email" placeholder="Email" required>
+            <input type="text" class="form-control autocheck" id="phone" placeholder="9876543210" required>
+            <p class="errortext">Enter valid number.</p>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control mt-2 autocheck" id="email" placeholder="Email" required>
+            <p class="errortext">Enter valid email.</p>
             <small id="emailHelp" class="form-text text-muted">Your information is safe with us. Your contact will not be shared with anyone. Contact information people who take interest in your alert will be shared with you over sms and email.</small>
           </div>
         </div>
@@ -47,31 +55,73 @@
 </div>
 
 <script>
+  var animSpeed=500;
   $("#create-alert").click(function(){
-
-      name = $("#name").val();
-      type = $("#type").val();
-      content = $("#content").val();
-      location_ = $("#location").val();
-      phone = $("#phone").val();
-      email = $("#email").val();
-
-        $.ajax({
-              url: "/create-alert",
-              type: "POST",
-              data: {
-                  "name": name,
-                  "email": email,
-                  "type": type,
-                  "content": content,
-                  "location": location_,
-                  "phone": phone,
-              },
-              dataType: "json",
-              success: function (res) {
-                  alert('Thanks a lot. Your alert will soon be online !! ');
-                  $("#modalForm").modal('hide');
-              }
-          });
+      let name = $("#name").val();
+      let type = $("#type").val();
+      let content = $("#content").val();
+      let location_ = $("#location").val();
+      let phone = $("#phone").val();
+      let email = $("#email").val();
+      let validFlag = 1;
+      if(!!!name){
+        $('#name').addClass('errorHighlight');
+        $('#name ~ p.errortext').show(animSpeed);
+        validFlag = 0;
+      }
+      if(!!!type){
+        $('#type').addClass('errorHighlight');
+        $('#type ~ p.errortext').show(animSpeed);
+        validFlag = 0;
+      }
+      if(!!!content){
+        $('#content').addClass('errorHighlight');
+        $('#content ~ p.errortext').show(animSpeed);
+        validFlag = 0;
+      }
+      if(!!!location_){
+        $('#location').addClass('errorHighlight');
+        $('#location ~ p.errortext').show(animSpeed);
+        validFlag = 0;
+      }
+      if(!!!phone){
+        $('#phone').addClass('errorHighlight');
+        $('#phone ~ p.errortext').show(animSpeed);
+        validFlag = 0;
+      }
+      if(!!!email){
+        $('#email').addClass('errorHighlight');
+        $('#email ~ p.errortext').show(animSpeed);
+        validFlag = 0;
+      }
+      if(!!validFlag) $.ajax({
+            url: "/create-alert",
+            type: "POST",
+            data: {
+                "name": name,
+                "email": email,
+                "type": type,
+                "content": content,
+                "location": location_,
+                "phone": phone,
+            },
+            dataType: "json",
+            success: function (res) {
+                alert('Thanks a lot. Your alert will soon be online !! ');
+                $("#modalForm").modal('hide');
+            }
+        });
+      
+      
+  })
+  $('.autocheck').on('keyup change',(e)=>{
+    ele=$(e.target)
+   
+    if(ele.hasClass('errorHighlight')){
+      if(!!ele.val()){
+        ele.removeClass('errorHighlight');
+        ele.siblings('p.errortext').hide(animSpeed);
+      }
+    }
   })
 </script>
