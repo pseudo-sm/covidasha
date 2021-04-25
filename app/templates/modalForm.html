@@ -25,7 +25,24 @@
           </div>
           <div class="form-group">
             <label for="content">What ?</label>
-            <input type="text" class="form-control autocheck" id="content" placeholder="Plasma / Oxygen / Funds" required>
+             <div class="control-group">
+                <div class="controls span2">
+                  <label class="checkbox">
+                      <input type="checkbox" class="type" value="plasma"> Plasma
+                  </label>
+                  <label class="checkbox">
+                      <input type="checkbox" class="type" value="oxygen"> Oxygen
+                  </label>
+                  <label class="checkbox">
+                      <input type="checkbox" class="type" value="funds"> Funds
+                  </label>
+                  <label class="checkbox">
+                      <input type="checkbox" class="type" value="others"> Others
+                  </label>
+              </div>
+               <p id="type-errortext" class="d-none"  style="color:red;">Please check atleast one item.</p>
+            </div>
+            <input type="text" class="form-control autocheck" id="content" placeholder="Add keywords" required>
             <small>Mention all possible details like Blood group,amount etc  </small>
             <p class="errortext">Enter valid details.</p>
           </div>
@@ -62,12 +79,21 @@
       let content = $("#content").val();
       let location_ = $("#location").val();
       let phone = $("#phone").val();
+      var types = $(".type").map(function(){if($(this).is(':checked')){return $(this).val()};}).get();
+      console.log(types,"types");
       let email = $("#email").val();
       let validFlag = 1;
       if(!!!name){
         $('#name').addClass('errorHighlight');
         $('#name ~ p.errortext').show(animSpeed);
         validFlag = 0;
+      }
+      if(types.length==0){
+        validFlag = 0;
+        $("#type-errortext").removeClass("d-none");
+      }
+      else {
+          $("#type-errortext").addClass("d-none");
       }
       if(!!!type){
         $('#type').addClass('errorHighlight');
@@ -94,7 +120,8 @@
         $('#email ~ p.errortext').show(animSpeed);
         validFlag = 0;
       }
-      if(!!validFlag) $.ajax({
+      if(!!validFlag) {
+      $.ajax({
             url: "/create-alert",
             type: "POST",
             data: {
@@ -104,6 +131,7 @@
                 "content": content,
                 "location": location_,
                 "phone": phone,
+                "types":JSON.stringify(types)
             },
             dataType: "json",
             success: function (res) {
@@ -111,7 +139,8 @@
                 $("#modalForm").modal('hide');
             }
         });
-      
+        }
+
       
   })
   $('.autocheck').on('keyup change',(e)=>{

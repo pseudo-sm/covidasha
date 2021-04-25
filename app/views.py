@@ -1,3 +1,5 @@
+import json
+
 from django.core.mail import EmailMessage
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -12,14 +14,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def index(request):
 
     alerts = Alert.objects.all().order_by("-datetime")
-    page = request.GET.get('page', 1)
-    paginator = Paginator(alerts, 10)
-    try:
-        alerts = paginator.page(page)
-    except PageNotAnInteger:
-        alerts = paginator.page(1)
-    except EmptyPage:
-        alerts = paginator.page(paginator.num_pages)
+
     return render(request,"index.html",{"alerts":alerts})
 
 @csrf_exempt
@@ -33,7 +28,18 @@ def create_alert(request):
     location = request.POST.get("location")
     phone = request.POST.get("phone")
     email = request.POST.get("email")
+    types = request.POST.get("types")
+    types = json.loads(types)
     new_alert = Alert(name=name,want=want,what=what,location=location,phone=phone,email=email)
+    new_alert.save()
+    if "plasma" in types:
+        new_alert.plasma = True
+    if "oxygen" in types:
+        new_alert.oxygen = True
+    if "funds" in types:
+        new_alert.money = True
+    if "others" in types:
+        new_alert.others = True
     new_alert.save()
     class_name = "bg-danger" if want  else  "bg-success"
     sub_text = "Looking for " if want else "Has a"
