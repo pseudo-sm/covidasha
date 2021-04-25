@@ -70,8 +70,13 @@
     top: 0;
     left: 0;
 }
-
-
+p.errortext{
+  color:red;
+  display:none;
+}
+select.errorHighlight, input.errorHighlight{
+  box-shadow: 0px 0px 13px 1px #ff000094;
+}
   </style>
 </head>
 <body style="
@@ -82,6 +87,7 @@
   ),
   url({% static 'bg.jpg' %});
   background-position: center;
+  background-attachment: fixed;
   ">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

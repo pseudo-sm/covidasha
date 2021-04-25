@@ -1,4 +1,7 @@
-
+# vscode settings
+.vscode
+# Adarsh's virtual env
+env/*
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
