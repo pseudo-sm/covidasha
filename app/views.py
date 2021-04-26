@@ -33,10 +33,9 @@ def create_alert(request):
     what = request.POST.get("content")
     location = request.POST.get("location")
     phone = request.POST.get("phone")
-    email = request.POST.get("email")
     types = request.POST.get("types")
     types = json.loads(types)
-    new_alert = Alert(name=name,want=want,what=what,location=location,phone=phone,email=email)
+    new_alert = Alert(name=name,want=want,what=what,location=location,phone=phone)
     new_alert.save()
     if "plasma" in types:
         new_alert.plasma = True
@@ -55,24 +54,14 @@ def create_alert(request):
 def enquire(request):
     name = request.POST.get("name")
     phone = request.POST.get("phone")
-    email = request.POST.get("email")
     alert_id = request.POST.get("alert_id")
     alert = Alert.objects.get(id=alert_id)
-    enquire = Enquiry(name=name,phone=phone,email=email,alert=alert)
+    enquire = Enquiry(name=name,phone=phone,alert=alert)
     enquire.save()
-    body = "{} has taken interest in your alert (Attached at the end of the email). He has shared his phone number and email id with us : \nPhone : {} \n Email : {}. Try contacting, if they are not available give a call to us @8249619206.\n {} \n Location : {} \n Thank You. ".format(name,phone,email,alert.what,alert.location)
-    # send_email("New enquiry for your covid alert",body,alert.email)
+    body = "{} has taken interest in your alert (Attached at the end of the message). They have shared their phone number with us : \nPhone : {} . Try contacting, if they are not available give a call to us @8249619206.\n {} \n Location : {} \n Thank You. ".format(name,phone,alert.what,alert.location)
     send_message(body,enquire.phone,alert.phone)
     return JsonResponse(True,safe=False)
 
-def send_email(subject,body,to):
-    email_msg = EmailMessage(
-            "New Lead",
-            body,
-            settings.EMAIL_HOST_USER,
-            ["admin@cavemendev.com"],
-        )
-    email_msg.send(fail_silently=False)
 
 import plivo
 def send_message(body,from_,to):

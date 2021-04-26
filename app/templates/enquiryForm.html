@@ -16,7 +16,6 @@
           <div class="form-group">
             <label for="e-phone">How to reach you?</label><br>
             <input type="text" class="form-control" id="e-phone" placeholder="999999999" required>
-            <input type="text" class="form-control mt-2" id="e-email" placeholder="Email" required>
             <small id="emailHelp" class="form-text text-muted">Your contact information will be shared with the person</small>
           </div>
         </div>
@@ -34,20 +33,18 @@
       name = $("#e-name").val();
       alert_id = $(this).attr('alert-id');
       phone = $("#e-phone").val();
-      email = $("#e-email").val();
 
         $.ajax({
               url: "/create-enquire",
               type: "POST",
               data: {
                   "name": name,
-                  "email": email,
                   "alert_id": alert_id,
                   "phone": phone,
               },
               dataType: "json",
               success: function (res) {
-                  alert('Successfully Submitted. Wait for a call or an email!!');
+                  alert('Successfully Submitted. Wait for a call!!');
                   $("#enquiryForm").modal('hide');
               }
           });

@@ -12,7 +12,6 @@ class Alert(models.Model):
     what = models.CharField(max_length=300)
     location = models.CharField(max_length=300)
     phone = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
     datetime = models.DateTimeField(auto_now=True)
     plasma = models.BooleanField(default=False)
     oxygen = models.BooleanField(default=False)
@@ -42,7 +41,6 @@ class Enquiry(models.Model):
     alert = models.ForeignKey(Alert,on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
     datetime = models.DateTimeField(auto_now=True)
 
     def __str__(self):
