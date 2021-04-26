@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "steadfast-rex-311904",
+  "private_key_id": "576985c358ca8825cfadc16243b1149494bc1ee1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCwv2qjrpar8dBi\n13pnBjWmtYRP/pRyA1kQylkGt51kdiK80cPz79rxcCPS3k63gBwU/KM39Z1MUEIJ\n/X2vT1XLlYo688mcjZvCcsJXBIB2y018sHdcQD9ctD14BehrrxS9kcod1fc1B9Ux\neZJDkUUXSbSut25P4Z12Pi/u0Wv6ej2rYQxQGLfrWlG9ZDP2Ch4wgo1aeLHWYY8D\n+sGOaoSi80TxtAE5681x9SGypUeu920HaIaOQm/ZqZKRtknPpxksIXi/hgIJSlOP\n/7CT9jQ3JAXXfKhhD8/8YooTQ1XxC414st1/mh7GzIjhRbUHRNJKPLiXTvlJSfAM\nzodn6ccDAgMBAAECggEAJqadT9EAkvZM3yiG1Fu3xM6B8ipWVP5lbjYJtN3XVd49\np3PpuYD0rIKc2uKRbTBfM7mxia206bjNUDj2UK11MhFwCodASfNvodyNohDSdOft\neHxwhaRpFsE1hfcoxc+iJfhpLhAZwKeHWAvhT9RHOxn7oI9tWJuaXv6nZb63Ma1H\nEuDcbfm6y9iYumyyE6718TO0hT2JaUVOWgkQCzfpGdoN/mZWEv3baRj7LXh8cdUj\nbYafZAjjQfmQIU2qHLlKCt09K+2YrYr1+YC3dZNkiEMxra8+wxsyFSUqQzkE2SI5\ngAn2bmwG5yAO0AAi5vmdms7y0gWuVgTD6CjLxZXiHQKBgQDtT35UsdMZrc23gIOQ\nt4H20GSMs/bQc7a5mj/G42C/nXWaGOER/+wzTg88/B4CDZXN7IqM5BJpIaWhTiW6\nso1P3mWHcuTRdeO9J6ORm7Vcxa8ZPYj8/6u+G5kIglfAMPRKEFx9UwWbka7a5axs\nOozo0zvRLjkunlfjy0tPUkygvwKBgQC+quTK8tuv6g09YL9L/KT5HfEndU2qNfiI\nz7psjAwPLIk8e5emAp3AcFNjHFWPvLyVOVJ6Q81iBtaGRwHGT8LhGl+sAbnyFJl6\natkpMOF/SanVsc8UHMWbI2beog315x6jY2q4zV9Wl7E1jRU1fPFrb4JYFI7+Mr7I\neh/72nVmvQKBgQC1gOBhzORlto4p9Kwr6n8HlFnjV93Fj0tJZ9Wxu8UKqVcCNlcm\nmjRBBUoYXchhz5wtNOa/Xc1LBYYV+pxW0CvO042Z7GFgZyd5TDEJtCshurzytCLr\nRm1H6PnCDVcqUwb1AtCKtg4K74DqQVIAMUQG61DL6+umYUtdmeaO06ZyJwKBgQC+\nYSj+NCyDpDIAHUAlgWjAjdMjUQ9xa150TOaaR+Qqqo+FYurzCh217vJ0PfB5Cz1J\nyui9yEGlJarCfNgayb2OwqTQvRCL1WHCSDn51SLz0/vOsjJQpMHyvBCVMD68UD/Z\naQVA7V/KuMBq9io9NDpiyf7eL/jvfH/e8YJKGcGsCQKBgQCr6/y64DoA9TAfrN+z\nV1OEcvnvWTUWAgMG4vCltfPTUu5J46QnFV5hvq/V7+ofbh9avFL5gZUUwBufgm9p\nkxDZHGTNFjCRMFVYYj0gQUa+S/6SkKqQImkKG+mRqyvGxJKdd4bJGFGpjX+73NBY\n8GHZyc6vgueR7tIa36RYcuYncQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "covidasha@steadfast-rex-311904.iam.gserviceaccount.com",
+  "client_id": "102479636412403040847",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/covidasha%40steadfast-rex-311904.iam.gserviceaccount.com"
+}

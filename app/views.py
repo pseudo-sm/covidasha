@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.core.paginator import Paginator
 # Create your views here.
 import requests
-from .models import Alert,Enquiry
+from .models import Alert,Enquiry,Visit
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -14,8 +14,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def index(request):
 
     alerts = Alert.objects.all().order_by("-datetime")
-
-    return render(request,"index.html",{"alerts":alerts})
+    ip = get_client_ip(request)
+    visits = Visit.objects.all()
+    if len(visits.filter(ip=ip))==0:
+        visit = Visit(ip=ip)
+        visit.save()
+    count = 580
+    enquires = Enquiry.objects.all()
+    return render(request,"index.html",{"alerts":alerts,"visits":count+len(visits),'alerts_count':len(alerts),"enquires":len(enquires)})
 
 @csrf_exempt
 def create_alert(request):
@@ -47,7 +53,6 @@ def create_alert(request):
 
 @csrf_exempt
 def enquire(request):
-    print(request.POST)
     name = request.POST.get("name")
     phone = request.POST.get("phone")
     email = request.POST.get("email")
@@ -57,7 +62,7 @@ def enquire(request):
     enquire.save()
     body = "{} has taken interest in your alert (Attached at the end of the email). He has shared his phone number and email id with us : \nPhone : {} \n Email : {}. Try contacting, if they are not available give a call to us @8249619206.\n {} \n Location : {} \n Thank You. ".format(name,phone,email,alert.what,alert.location)
     # send_email("New enquiry for your covid alert",body,alert.email)
-    send_message(body,alert.phone)
+    send_message(body,enquire.phone,alert.phone)
     return JsonResponse(True,safe=False)
 
 def send_email(subject,body,to):
@@ -70,14 +75,23 @@ def send_email(subject,body,to):
     email_msg.send(fail_silently=False)
 
 import plivo
-def send_message(body,to):
+def send_message(body,from_,to):
     client = plivo.RestClient("MAMWZLODVJNWRKZDG4NJ", "MTNlYmM4MDlhNDgwNjBkODk2MjNkZTMyZTVkODA1")
     response = client.messages.create(
-        src='+918249619206',
+        src='+91'+from_,
         dst="+91"+to,
         text=body)
-    print(response)
 
 def how_it_works(request):
 
     return render(request,"how_work.html")
+
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
