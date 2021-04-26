@@ -58,9 +58,7 @@
             <p class="errortext">Enter valid number.</p>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control mt-2 autocheck" id="email" placeholder="Email" required>
-            <p class="errortext">Enter valid email.</p>
-            <small id="emailHelp" class="form-text text-muted">Your information is safe with us. Your contact will not be shared with anyone. Contact information people who take interest in your alert will be shared with you over sms and email.</small>
+            <small id="emailHelp" class="form-text text-muted">Your information is safe with us. Your contact will not be shared with anyone. Contact information people who take interest in your alert will be shared with you over sms.</small>
           </div>
         </div>
         <div class="modal-footer border-top-0 d-flex justify-content-center">
@@ -81,7 +79,6 @@
       let phone = $("#phone").val();
       var types = $(".type").map(function(){if($(this).is(':checked')){return $(this).val()};}).get();
       console.log(types,"types");
-      let email = $("#email").val();
       let validFlag = 1;
       if(!!!name){
         $('#name').addClass('errorHighlight');
@@ -115,18 +112,12 @@
         $('#phone ~ p.errortext').show(animSpeed);
         validFlag = 0;
       }
-      if(!!!email){
-        $('#email').addClass('errorHighlight');
-        $('#email ~ p.errortext').show(animSpeed);
-        validFlag = 0;
-      }
       if(!!validFlag) {
       $.ajax({
             url: "/create-alert",
             type: "POST",
             data: {
                 "name": name,
-                "email": email,
                 "type": type,
                 "content": content,
                 "location": location_,
