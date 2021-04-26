@@ -248,5 +248,81 @@ select.errorHighlight, input.errorHighlight{
   })
 </script>
 {% include 'footer.html' %}
+  <style>
+    .stats-bar {
+        overflow: hidden;
+        display: block;
+        background-color: #333;
+        position: fixed;
+        bottom: 0;
+        width: 100% !important;
+        z-index: 99;
+    }
+
+    .stats-bar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        text-decoration: none;
+        padding: 5px 0px 5px 0px;
+        font-size: 17px;
+
+        font-size: 15px;
+    }
+
+    .stats-bar a:hover {
+        background: #f1f1f1;
+        color: black;
+    }
+
+     .smitem1 {
+        background: #0D2149;
+        color: white;
+        width: 30%;
+    }
+
+    .smitem2 {
+        background: #805E73;
+        color: white;
+        width: 40%;
+    }
+
+    .smitem3 {
+        background: #208AAE;
+        color: white;
+        width: 30%;
+    }
+  </style>
+  <div class="stats-bar">
+    <a href="#" class="smitem1">
+      <div class="container-fluid">
+        <div class="row no-gutters">
+          <div class="col-12 text-center pl-2">
+            <span class="sideHide"><span id="doctors">{{visits}}</span><br>Unique Visitors</span>
+          </div>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="smitem2">
+      <div class="container-fluid">
+        <div class="row no-gutters">
+          <div class="col-12 text-center pl-2">
+            <span class="sideHide"><span id="doctors">{{alerts_count}}</span><br>Alerts</span>
+          </div>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="smitem3">
+      <div class="container-fluid">
+        <div class="row no-gutters">
+          <div class="col-12 text-center pl-2">
+            <span class="sideHide"><span id="doctors">{{enquires}}</span><br>Enquiries</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
 </body>
 </html>
