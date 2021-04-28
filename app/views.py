@@ -1,12 +1,13 @@
 import json
 
+from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 # Create your views here.
 import requests
-from .models import Alert,Enquiry,Visit
+from .models import Alert,Enquiry,Visit, FoodOrder
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -84,3 +85,17 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+def covid_kitchen(request):
+
+    return render(request,"covid-kitchen.html")
+
+def food_order(request):
+    fullname = request.POST.get("fullname")
+    phone = request.POST.get("phone")
+    period = request.POST.get("period")
+    address = request.POST.get("address")
+    order = FoodOrder(name=fullname,phone=phone,period=period,address=address)
+    order.save()
+    messages.success(request,"Succesfully submitted. Please wait for a call.")
+    return render(request,"covid-kitchen.html")
