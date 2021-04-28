@@ -254,7 +254,8 @@ select.errorHighlight, input.errorHighlight{
   <style>
     .stats-bar {
         overflow: hidden;
-        display: block;
+        display: flex;
+        place-content: space-evenly;
         background-color: #333;
         position: fixed;
         bottom: 0;
@@ -264,13 +265,14 @@ select.errorHighlight, input.errorHighlight{
 
     .stats-bar a {
         float: left;
-        display: block;
+        display: grid;
+        place-items: center;
         color: #f2f2f2;
         text-align: center;
         text-decoration: none;
         padding: 5px 0px 5px 0px;
         font-size: 17px;
-
+        width:100%;
         font-size: 15px;
     }
 
@@ -282,33 +284,21 @@ select.errorHighlight, input.errorHighlight{
      .smitem1 {
         background: #0D2149;
         color: white;
-        width: 30%;
     }
 
     .smitem2 {
         background: #805E73;
         color: white;
-        width: 40%;
     }
 
     .smitem3 {
         background: #208AAE;
         color: white;
-        width: 30%;
     }
   </style>
   <div class="stats-bar">
-    <a href="#" class="smitem1">
-      <div class="container-fluid">
-        <div class="row no-gutters">
-          <div class="col-12 text-center pl-2">
-            <span class="sideHide"><span id="doctors">{{visits}}</span><br>Unique Visitors</span>
-          </div>
-        </div>
-      </div>
-    </a>
     <a href="#" class="smitem2">
-      <div class="container-fluid">
+      <div class="pl-2 pr-2">
         <div class="row no-gutters">
           <div class="col-12 text-center pl-2">
             <span class="sideHide"><span id="doctors">{{alerts_count}}</span><br>Alerts</span>
@@ -316,8 +306,17 @@ select.errorHighlight, input.errorHighlight{
         </div>
       </div>
     </a>
+    <a href="#" class="smitem1">
+      <div class="pl-2 pr-2">
+        <div class="row no-gutters">
+          <div class="col-12 text-center pl-2">
+            <span class="sideHide"><span id="doctors">{{visits}}</span><br>Unique Visitors</span>
+          </div>
+        </div>
+      </div>
+    </a>
     <a href="#" class="smitem3">
-      <div class="container-fluid">
+      <div class="pl-2 pr-2">
         <div class="row no-gutters">
           <div class="col-12 text-center pl-2">
             <span class="sideHide"><span id="doctors">{{enquires}}</span><br>Enquiries</span>
