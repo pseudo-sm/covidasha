@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <script src="https://use.fontawesome.com/470f7fa13e.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Covid Kitchen</title>
+</head>
+<body style="
+    background:
+  linear-gradient(
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.6)
+  ),
+  url({% static 'bg.jpg' %});
+  background-position: center;
+  background-attachment: fixed;
+  ">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/how-it-works">How this works?</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" target="_blank" href="https://www.pdochealth.com">Consult a Doctor Online</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success m-2" id="msg" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="container mt-5 p-3">
+    <center><h4 class="text-white bold"> Healthy Doctor Recommended Diet for COVID effected and Home Quarantined people.</h4></center>
+    <div class="card p-3 shadow-lg mt-1">
+    <form action="{% url 'food_order' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Full Name</label>
+            <input class="form-control" name="fullname" type="text" placeholder="Full Name">
+        </div>
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input class="form-control" type="text" name="phone" placeholder="Phone Number">
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <input class="form-control" type="text" name="address" placeholder="Address">
+        </div>
+        <div class="form-group">
+            <label>How long will you need this service?</label>
+            <input class="form-control" type="text" name="period" placeholder="7 Days / 10 Days / 14 Days">
+        </div>
+        <button class="btn btn-warning w-100">Submit</button>
+    </form>
+</div>
+</div>
+</body>
+</html>

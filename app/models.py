@@ -51,3 +51,14 @@ class Visit(models.Model):
     ip = models.CharField(max_length=100,unique=True)
     datetime = models.DateTimeField(auto_created=True,auto_now=True)
     active = models.BooleanField(default=True)
+
+class FoodOrder(models.Model):
+
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    period = models.CharField(max_length=100)
+    address = models.TextField()
+    datetime = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.name
